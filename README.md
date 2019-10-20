@@ -1,4 +1,4 @@
-# Grade_Predictor
+# Students_Grade_Predictor
 Uses a machine learning library to train a bot to predict students' grades
 
 System Requirements: Anaconda, Pandas, NumPy, scikit-learn
