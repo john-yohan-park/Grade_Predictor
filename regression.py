@@ -30,7 +30,7 @@ data = panda.read_csv('student-mat.csv', sep=';')
 # trim data to its desired attributes
 data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]    # working with ints
 
-# helps us identify which attributes help us to create the most accurate model
+# identify which attributes help us to create the most accurate model
 '''
 attr1 = 'absences'                            # see correlation
 style.use('ggplot')
