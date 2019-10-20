@@ -3,7 +3,7 @@ Summary: Uses a machine learning library to train a bot to predict students' gra
 
 System Requirements: Anaconda, Pandas, NumPy, scikit-learn
 
-This program takes a record of students' academic performance from a tri-semester educational
+Takes a record of students' academic performance from a tri-semester educational
 institution and predicts students' 3rd semester grades based on their 1st semester grades, 
 2nd semester grades, time spent studying, instances of failures, and numbers of absences.
 Data Source: https://archive.ics.uci.edu/ml/datasets/student+performance
