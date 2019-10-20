@@ -1,7 +1,7 @@
 # Students_Grade_Predictor
 Summary: Uses a machine learning library to train a bot to predict students' grades. Written in Python
 
-System Requirements: Anaconda, Pandas, NumPy, scikit-learn
+System Requirements: Anaconda, TensorFlow, Pandas, NumPy, scikit-learn, pickle, matplotlib
 
 Takes students' academic performance record from a tri-semester educational
 institution and predicts students' 3rd semester grades based on their 1st & 2nd 
