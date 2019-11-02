@@ -1,5 +1,5 @@
 # Students_Grade_Predictor
-Predicts students' 3rd semester grades based on their 1st, 2nd semester grades, time spent studying, instances of failures, and number of absences.
+Predicts students' 3rd semester grades based on their 1st, 2nd semester grades, time spent studying, instances of failures, and number of absences
 
 Uses a linear regression model
 
