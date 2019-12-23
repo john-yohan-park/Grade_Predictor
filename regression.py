@@ -4,33 +4,34 @@ Github: john-yohan-park
 
 System Requirements: Anaconda, TensorFlow, Pandas, NumPy, scikit-learn, pickle, matplotlib
 
-Takes record of students' academic performance from a tri-semester high school
-and predicts their 3rd semester grades based on their 1st & 2nd semester grades,
-time spent studying, instances of failures, and number of absences.
-Data Source: https://archive.ics.uci.edu/ml/datasets/student+performance
-Data Size: 649 students
+Predicts the students' 3rd semester grades based on their:
+    - 1st & 2nd semester grades
+    - time spent studying
+    - instances of failures
+    - number of absences
 
-Premise: There exists a strong correlation between the students' 3rd semester grades
-and their 1st & 2nd semester grades, time spent studying, and number of times
-they have failed or missed school. Therefore, we can use a linear regression model to train
-our machine learning bot to predict the students' 3rd semester grades
+Uses linear regression model to train our machine
+
+Data Source: https://archive.ics.uci.edu/ml/datasets/student+performance
+Data Size:   649 students
 '''
-import pandas as panda              # extract data
-import numpy as nump                # organize data into an array
-import sklearn                      # machine learning library
-from sklearn import linear_model    # linear regression model
-import pickle                       # save model
-import matplotlib.pyplot as pyplot  # graph data
-from matplotlib import style        # change graph style
+
+# import libraries
+import pandas                          # extract data
+import numpy                           # organize data into an array
+import sklearn                         # machine learning library
+import pickle                          # save model
+from   matplotlib import pyplot        # graph data
+from   sklearn    import linear_model  # linear regression model
+from   matplotlib import style         # change graph style
 
 #======================================PREP DATA======================================
-
 # extract data
-data = panda.read_csv('student-mat.csv', sep=';')
-# trim data to its desired attributes
-data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]    # working with ints
+data = pandas.read_csv('student-mat.csv', sep = ';')
+# trim data to desired attributes
+data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]  # working with ints
 
-# identify which attributes help us to create the most accurate model
+# identify which attributes help us create the most accurate model
 '''
 attr1 = 'absences'                            # see correlation
 style.use('ggplot')
@@ -40,14 +41,13 @@ pyplot.ylabel('3rd Sem Grade')
 pyplot.show()
 '''
 
-# variable to predict
-predict = 'G3'
+predict = 'G3'  # variable to predict
 
 # construct new data frames
-x = nump.array(data.drop([predict], 1))
-y = nump.array(data[predict])
+x = numpy.array(data.drop([predict], 1))
+y = numpy.array(data[predict])
 
-# partition 10% of data as test samples so we could test accuracy of our model
+# partition 10% of data as test samples to test model accuracy
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
 
 #================================TRAIN & GET BEST MODEL================================
