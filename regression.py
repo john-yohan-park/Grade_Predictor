@@ -1,17 +1,13 @@
 '''
 John Park
 Github: john-yohan-park
-
 System Requirements: Anaconda, TensorFlow, Pandas, NumPy, scikit-learn, pickle, matplotlib
-
-Predicts the students' 3rd semester grades based on their:
+Predicts students' 3rd semester grades based on their:
     - 1st & 2nd semester grades
     - time spent studying
     - instances of failures
     - number of absences
-
 Uses linear regression model to train our machine
-
 Data Source: https://archive.ics.uci.edu/ml/datasets/student+performance
 Data Size:   649 students
 '''
@@ -51,7 +47,6 @@ y = numpy.array(data[predict])
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
 
 #================================TRAIN & GET BEST MODEL================================
-
 bestAccuracy = 0
 for _ in range(100):
     x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
@@ -68,7 +63,6 @@ for _ in range(100):
             pickle.dump(linear, f)
 
 #===================================SAVE BEST MODEL===================================
-
 pickle_in = open('student_model.pickle', 'rb')
 linear = pickle.load(pickle_in)
 
