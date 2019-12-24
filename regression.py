@@ -11,24 +11,22 @@ Uses linear regression model to train our machine
 Data Source: https://archive.ics.uci.edu/ml/datasets/student+performance
 Data Size:   649 students
 '''
-
 # import libraries
 import pandas                          # extract data
 import numpy                           # organize data into an array
 import sklearn                         # machine learning library
 import pickle                          # save model
-from   matplotlib import pyplot        # graph data
 from   sklearn    import linear_model  # linear regression model
+from   matplotlib import pyplot        # graph data
 from   matplotlib import style         # change graph style
 
 #======================================PREP DATA======================================
-# extract data
-data = pandas.read_csv('student-mat.csv', sep = ';')
-# trim data to desired attributes
-data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]  # working with ints
-
-# identify which attributes help us create the most accurate model
+data = pandas.read_csv('student-mat.csv', sep = ';')                  # extract data
+data = data[['G1', 'G2', 'G3', 'studytime', 'failures', 'absences']]  # trim data
+     # inner [] = python list syntax
+     # outer [] = pandas index syntax
 '''
+# identify which attributes create most accurate model
 attr1 = 'absences'                            # see correlation
 style.use('ggplot')
 pyplot.scatter(data[attr1], data['G3'])       # use scatter plot
@@ -36,33 +34,25 @@ pyplot.xlabel(attr1)
 pyplot.ylabel('3rd Sem Grade')
 pyplot.show()
 '''
-
-predict = 'G3'  # variable to predict
-
-# construct new data frames
-x = numpy.array(data.drop([predict], 1))
+predict = 'G3'                            # identify variable to predict
+x = numpy.array(data.drop([predict], 1))  # construct new data frames
 y = numpy.array(data[predict])
-
-# partition 10% of data as test samples to test model accuracy
+# set aside 10% of data to test model accuracy
 x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
 
 #================================TRAIN & GET BEST MODEL================================
 bestAccuracy = 0
 for _ in range(100):
     x_train, x_test, y_train, y_test = sklearn.model_selection.train_test_split(x, y, test_size = 0.1)
-
-    # train model using linear regression
-    linear = linear_model.LinearRegression()
-
-    linear.fit(x_train, y_train)             # train: produces line of best fit from train data
+    linear = linear_model.LinearRegression() # train using linear regression
+    linear.fit(x_train, y_train)             # produces line of best fit from train data
     accuracy = linear.score(x_test, y_test)  # test accuracy
-
-    if accuracy > bestAccuracy:              # save the best model
+    if accuracy > bestAccuracy:
         bestAccuracy = accuracy
         with open('student_model.pickle', 'wb') as f:
-            pickle.dump(linear, f)
+            pickle.dump(linear, f)           # save best model
 
-#===================================SAVE BEST MODEL===================================
+#===================================USE BEST MODEL===================================
 pickle_in = open('student_model.pickle', 'rb')
 linear = pickle.load(pickle_in)
 
